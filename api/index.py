@@ -4,38 +4,34 @@ import requests
 
 app = Flask(__name__)
 
+# ይህንን ቶከን በድጋሚ አረጋግጥ
 TOKEN = "7863843221:AAF5p6Rr6yJ-wDwUjD4YdbnhKUnnGjC8vmE"
 
-def send_message(chat_id, text):
+def send_telegram_message(chat_id, text):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     payload = {
         "chat_id": chat_id,
         "text": text,
-        "parse_mode": "HTML",
-        "reply_markup": {
-            "keyboard": [
-                [{"text": "🛍 ዕቃዎችን እይ"}, {"text": "➕ ዕቃ መዝግብ"}],
-                [{"text": "📞 እኛን ለማግኘት"}]
-            ],
-            "resize_keyboard": True
-        }
+        "parse_mode": "HTML"
     }
-    requests.post(url, json=payload)
+    return requests.post(url, json=payload)
 
 @app.route('/', defaults={'path': ''}, methods=['POST', 'GET'])
 @app.route('/<path:path>', methods=['POST', 'GET'])
-def main_handler(path):
+def handler(path):
     if request.method == 'POST':
         data = request.get_json()
+        
+        # ቴሌግራም መልእክት ሲልክ እዚህ ጋር መረጃውን እናወጣለን
         if "message" in data:
             chat_id = data["message"]["chat"]["id"]
-            user_text = data["message"].get("text", "")
+            user_message = data["message"].get("text", "")
 
-            if user_text == "/start":
-                send_message(chat_id, "<b>ሰላም! እንኳን ወደ ገበያ ኮኔክት በሰላም መጡ።</b>\nምን ላግዝዎት?")
-            elif user_text == "🛍 ዕቃዎችን እይ":
-                send_message(chat_id, "በአሁኑ ሰዓት ዝርዝሩ ባዶ ነው።")
+            if user_message == "/start":
+                send_telegram_message(chat_id, "<b>ሰላም!</b> ቦቱ በትክክል እየሰራ ነው።\nእንኳን ደስ አለዎት!")
             else:
-                send_message(chat_id, f"መልእክትዎ ደርሶኛል፡ {user_text}")
+                send_telegram_message(chat_id, f"የላኩት መልእክት፡ <i>{user_message}</i>")
+        
         return "OK", 200
-    return "<h1>Bot is Active!</h1>"
+    
+    return "<h1>Bot Server is Live!</h1>"
