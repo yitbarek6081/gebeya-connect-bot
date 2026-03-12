@@ -1,15 +1,20 @@
-from flask import Flask, request
+from flask import Flask, request, render_template_string
 import urllib.request
 import json
+import os
 
-# ይህ ስም 'app' መሆኑ በጣም ወሳኝ ነው
 app = Flask(__name__)
 
 TOKEN = "7863843221:AAF5p6Rr6yJ-wDwUjD4YdbnhKUnnGjC8vmE"
 
 @app.route('/')
 def home():
-    return "Bot Server is Running!"
+    # index.html ፋይሉን አንብቦ ለብራውዘር ይልካል
+    try:
+        with open('index.html', 'r', encoding='utf-8') as f:
+            return f.read()
+    except:
+        return "<h1>Gebeya Connect is Live!</h1><p>Visit us on Telegram.</p>"
 
 @app.route('/api/index', methods=['POST', 'GET'])
 def telegram_webhook():
@@ -19,11 +24,20 @@ def telegram_webhook():
             chat_id = data["message"]["chat"]["id"]
             user_text = data["message"].get("text", "")
             
-            # መልእክት መላኪያ
+            # የቦቱ ቁልፎች (Buttons)
+            reply_markup = {
+                "keyboard": [
+                    [{"text": "🛍 ዕቃዎችን እይ"}, {"text": "➕ ዕቃ መዝግብ"}],
+                    [{"text": "📞 እኛን ለማግኘት"}]
+                ],
+                "resize_keyboard": True
+            }
+
             url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
             payload = json.dumps({
                 "chat_id": chat_id, 
-                "text": f"በመጨረሻ ሰርቷል! የላከው መልእክት፡ {user_text}"
+                "text": "እንኳን ወደ ገበያ ኮኔክት መጡ! ምን ላግዝዎት?",
+                "reply_markup": reply_markup
             }).encode('utf-8')
             
             req = urllib.request.Request(url, data=payload, headers={'Content-Type': 'application/json'})
@@ -31,6 +45,3 @@ def telegram_webhook():
             
         return "OK", 200
     return "Webhook is active!", 200
-
-# ይህን መስመር መጨረሻ ላይ ጨምረው
-app.debug = True
