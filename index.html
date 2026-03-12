@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gebeya Connect</title>
+    <title>ገበያ ኮኔክት</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        :root { --primary: #0088cc; --bg: #f0f2f5; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 15px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 15px; }
+        /* የምድብ (Tabs) ዲዛይን */
+        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; margin-bottom: 20px; sticky: top; }
+        .tab { background: white; padding: 10px 20px; border-radius: 20px; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .tab.active { background: #0088cc; color: white; }
         
-        /* Tabs ዲዛይን */
-        .tabs { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 20px; padding-bottom: 5px; }
-        .tab { background: white; padding: 10px 20px; border-radius: 25px; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; }
-        .tab.active { background: var(--primary); color: white; }
-        
-        /* ዕቃ ካርድ */
-        .card { background: white; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 20px; border: 1px solid #eee; }
+        /* የዕቃ ካርድ */
+        .card { background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 25px; border: 1px solid #eee; }
         .card-body { padding: 20px; }
-        .price { color: #f39c12; font-size: 1.25rem; font-weight: bold; margin: 10px 0; }
+        .price { color: #f39c12; font-size: 1.3rem; font-weight: bold; margin: 10px 0; }
         
-        .admin-contact { background: #f8fbff; border: 1px dashed var(--primary); padding: 15px; border-radius: 15px; margin-top: 15px; text-align: center; }
-        .btn-call { display: block; background: #2ecc71; color: white; text-align: center; padding: 14px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 10px; font-size: 1.1rem; }
+        /* የአድሚን መገናኛ ሳጥን */
+        .admin-contact { background: #f8fbff; border: 1px dashed #0088cc; padding: 15px; border-radius: 15px; margin-top: 15px; }
+        .btn-call { display: block; background: #2ecc71; color: white; text-align: center; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -34,16 +33,16 @@
     <div class="card">
         <div class="card-body">
             <h3 style="margin:0; color:#333;">🏘 መሬት የሚሸጥ</h3>
-            <p style="color:#666; font-size:0.95rem; line-height:1.6;">
+            <p style="color:#555; line-height:1.6;">
                 📍 <b>ከተማ:</b> ወልድያ<br>
                 🗺 <b>ልዩ ቦታ:</b> አራዳ ፒያሳ<br>
-                📏 <b>ስፋት:</b> 200 ካሬ ሜትር<br>
+                📏 <b>ስፋት:</b> 200 ካሬ ሜትር
             </p>
-            <div class="price">💰 2,200,000 ብር</div>
+            <div class="price">💰 2,500,000 ብር</div>
             
             <div class="admin-contact">
-                <span style="font-size: 0.85rem; color: #555;">ለመግዛት በዝግጅት ላይ ነዎት? አድሚኑን ያነጋግሩ፡</span><br>
-                <b style="font-size: 1.2rem; color: var(--primary);">0945880474</b>
+                <span style="font-size: 0.85rem; color: #666;">ለመግዛት አድሚኑን ያነጋግሩ፡</span><br>
+                <b style="font-size: 1.1rem; color: #0088cc;">0945880474</b>
                 <a href="tel:0945880474" class="btn-call">📞 አሁኑኑ ይደውሉ</a>
             </div>
         </div>
