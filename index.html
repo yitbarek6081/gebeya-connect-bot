@@ -6,51 +6,44 @@
     <title>ገበያ ኮኔክት</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 15px; }
-        /* የምድብ (Tabs) ዲዛይን */
-        .tabs { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; margin-bottom: 20px; sticky: top; }
-        .tab { background: white; padding: 10px 20px; border-radius: 20px; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; margin: 0; padding: 10px; }
+        .tabs { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; border-bottom: 2px solid #ddd; margin-bottom: 15px; }
+        .tab { background: white; padding: 10px 20px; border-radius: 20px; font-weight: bold; white-space: nowrap; cursor: pointer; }
         .tab.active { background: #0088cc; color: white; }
-        
-        /* የዕቃ ካርድ */
-        .card { background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden; margin-bottom: 25px; border: 1px solid #eee; }
-        .card-body { padding: 20px; }
+        .card { background: white; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; padding: 15px; }
         .price { color: #f39c12; font-size: 1.3rem; font-weight: bold; margin: 10px 0; }
-        
-        /* የአድሚን መገናኛ ሳጥን */
-        .admin-contact { background: #f8fbff; border: 1px dashed #0088cc; padding: 15px; border-radius: 15px; margin-top: 15px; }
-        .btn-call { display: block; background: #2ecc71; color: white; text-align: center; padding: 15px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .contact-box { background: #eef7fe; padding: 15px; border-radius: 12px; border: 1px dashed #0088cc; text-align: center; }
+        .call-btn { display: block; background: #2ecc71; color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
     <div class="tabs">
-        <div class="tab active">🏘 መሬት</div>
-        <div class="tab">🏠 ቤት</div>
-        <div class="tab">🚗 መኪና</div>
-        <div class="tab">🏗 ኤሌክትሮኒክስ</div>
+        <div class="tab active" onclick="showCat('land')">🏘 መሬት</div>
+        <div class="tab" onclick="showCat('house')">🏠 ቤት</div>
+        <div class="tab" onclick="showCat('car')">🚗 መኪና</div>
+        <div class="tab" onclick="showCat('tech')">🏗 ኤሌክትሮኒክስ</div>
     </div>
 
-    <div class="card">
-        <div class="card-body">
-            <h3 style="margin:0; color:#333;">🏘 መሬት የሚሸጥ</h3>
-            <p style="color:#555; line-height:1.6;">
-                📍 <b>ከተማ:</b> ወልድያ<br>
-                🗺 <b>ልዩ ቦታ:</b> አራዳ ፒያሳ<br>
-                📏 <b>ስፋት:</b> 200 ካሬ ሜትር
-            </p>
+    <div id="content">
+        <div class="card">
+            <h3>🏘 መሬት የሚሸጥ</h3>
+            <p>📍 ወልድያ | አራዳ<br>📐 200 ካሬ ሜትር</p>
             <div class="price">💰 2,500,000 ብር</div>
-            
-            <div class="admin-contact">
-                <span style="font-size: 0.85rem; color: #666;">ለመግዛት አድሚኑን ያነጋግሩ፡</span><br>
-                <b style="font-size: 1.1rem; color: #0088cc;">0945880474</b>
-                <a href="tel:0945880474" class="btn-call">📞 አሁኑኑ ይደውሉ</a>
+            <div class="contact-box">
+                <p style="margin:0; font-size:0.9rem;">ለመግዛት አድሚኑን ያነጋግሩ፡</p>
+                <b>0945880474</b>
+                <a href="tel:0945880474" class="call-btn">📞 አሁኑኑ ደውል</a>
             </div>
         </div>
     </div>
 
     <script>
+        function showCat(cat) {
+            // እዚህ ጋር በምድብ የመለየት ስራ መስራት ይቻላል
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+        }
         Telegram.WebApp.ready();
-        Telegram.WebApp.expand();
     </script>
 </body>
 </html>
