@@ -3,40 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gebeya Connect | ገበያ ኮኔክት</title>
+    <title>ገበያ ኮኔክት - Gebeya Connect | የእርስዎ ዲጂታል የገበያ መድረክ</title>
+    
+    <link rel="icon" href="https://telegram.org/img/website_icon.svg" type="image/svg+xml">
+    
     <style>
-        body { 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            background: linear-gradient(135deg, #0088cc, #005588); 
-            display: flex; justify-content: center; align-items: center; 
-            height: 100vh; margin: 0; color: white;
+        /* CSS Variables for professional look */
+        :root {
+            --primary-color: #0088cc; /* Telegram Blue */
+            --secondary-color: #005588; /* Darker Blue */
+            --accent-color: #ffcc00; /* Contrast Yellow */
+            --text-color: #333;
+            --bg-color: #f4f7f6;
+            --white: #ffffff;
         }
-        .card { 
-            background: white; padding: 40px; border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2); 
-            text-align: center; max-width: 400px; color: #333;
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: var(--text-color);
+            overflow-x: hidden;
         }
-        h1 { color: #0088cc; margin-bottom: 10px; }
-        p { line-height: 1.6; font-size: 1.1rem; }
-        .btn { 
-            display: inline-block; margin-top: 25px; padding: 15px 30px; 
-            background-color: #0088cc; color: white; 
-            text-decoration: none; border-radius: 50px; 
-            font-weight: bold; font-size: 1.1rem;
-            transition: transform 0.2s, background 0.3s;
+
+        /* Modern Background Shape */
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            z-index: -1;
+            clip-path: ellipse(150% 100% at 50% -50%);
         }
-        .btn:hover { 
-            background-color: #006699; transform: scale(1.05);
+
+        /* Hero Card */
+        .main-card {
+            background: var(--white);
+            padding: 50px 40px;
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 480px;
+            width: 90%;
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
         }
-        .status { color: #2ecc71; font-weight: bold; margin-top: 15px; }
+
+        .main-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .card-decor {
+            position: absolute;
+            top: -30px; right: -30px;
+            width: 120px; height: 120px;
+            background: rgba(0,136,204,0.05);
+            border-radius: 50%;
+        }
+
+        /* Logo and Title */
+        .logo-box {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+        }
+
+        h1 {
+            color: var(--secondary-color);
+            font-size: 2.4rem;
+            margin: 0 0 10px 0;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .slogan {
+            font-size: 1.15rem;
+            color: #666;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        /* Features Section */
+        .features-container {
+            text-align: left;
+            margin-bottom: 40px;
+            background: #f8fafd;
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 6px solid var(--primary-color);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .feature-item:last-child { margin-bottom: 0; }
+
+        .feature-icon {
+            background: var(--primary-color);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        /* Call to Action Button */
+        .tg-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 40px;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 12px 25px rgba(0,136,204,0.3);
+        }
+
+        .tg-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,136,204,0.4);
+        }
+
+        .tg-icon {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+        }
+
+        /* Footer */
+        .footer-text {
+            margin-top: 45px;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            .main-card { padding: 40px 25px; }
+            h1 { font-size: 2rem; }
+            .logo-box { font-size: 3.5rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>🛍 ገበያ ኮኔክት</h1>
-        <p>እንኳን በደህና መጡ! የቴሌግራም ቦታችን አሁን በስራ ላይ ነው። ዕቃ ለመግዛትም ሆነ ለመሸጥ ቦቱን ይጠቀሙ።</p>
-        <div class="status">● ቦቱ አሁን ይሰራል</div>
-        <a href="https://t.me/yite_gebeyaconnect_bot" class="btn">ወደ ቴሌግራም ሂድ</a>
+    
+    <div class="bg-gradient"></div>
+
+    <div class="main-card">
+        <div class="card-decor"></div>
+        
+        <div class="logo-box">🛍️</div>
+        <h1>ገበያ ኮኔክት</h1>
+        <p class="slogan">በኢትዮጵያ ቀዳሚው የዲጂታል ገበያ መድረክ በቴሌግራም። የሚፈልጉትን ዕቃ በቀላሉ ይግዙ ወይም ይሽጡ!</p>
+        
+        <div class="features-container">
+            <div class="feature-item">
+                <span class="feature-icon">✓</span> መሬት፣ ቤት እና መኪና
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">✓</span> ኤሌክትሮኒክስ እና ልዩ ልዩ ዕቃዎች
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">✓</span> ፈጣን እና ቀላል የመመዝገቢያ ሂደት
+            </div>
+            <div class="feature-item">
+                <span class="feature-icon">✓</span> 100% ነፃ እና ደህንነቱ የተጠበቀ
+            </div>
+        </div>
+
+        <a href="https://t.me/yite_gebeyaconnect_bot" class="tg-btn">
+            <svg class="tg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8L14.99 15.72C14.88 16.19 14.6 16.31 14.21 16.09L11.71 14.21L10.5 15.39C10.36 15.53 10.25 15.64 9.98 15.64L10.16 13.06L14.78 8.81C14.98 8.63 14.74 8.53 14.47 8.71L8.74 12.31L6.3 11.53C5.78 11.37 5.77 11.01 6.41 10.76L15.89 7.1C16.33 6.94 16.71 7.21 16.64 8.8Z" fill="white"/>
+            </svg>
+            ወደ ቴሌግራም ቦቱ ሂድ
+        </a>
     </div>
+
+    <div class="footer-text">
+        © 2026 Gebeya Connect | All rights reserved.
+    </div>
+
 </body>
 </html>
