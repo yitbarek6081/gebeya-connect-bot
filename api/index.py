@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # --- ኮንፊገሬሽን ---
 TOKEN = "7863843221:AAF5p6Rr6yJ-wDwUjD4YdbnhKUnnGjC8vmE"
-ADMIN_ID = "6348873724"
+ADMIN_ID = "7956330391"
 ADMIN_PHONE = "0945880474" # ያንተ ስልክ ቁጥር
 VERCEL_URL = "https://yite-gebeyaconnect.vercel.app/"
 
